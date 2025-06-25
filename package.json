@@ -1,0 +1,11 @@
+{
+    "name": "yt-dlp-gui",
+    "main": "electron/main.js",
+    "scripts": {
+      "start": "electron ."
+    },
+    "devDependencies": {
+      "electron": "^28.1.0"
+    }
+  }
+  
