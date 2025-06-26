@@ -4,65 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YT-DL Studio</title>
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-dark.css" />
+  <link id="themeStylesheet" rel="stylesheet" href="style-light.css">
+
 </head>
 <body>
-  <nav class="topbar">
-    <div class="logo">YT-DL Studio</div>
-  </nav>  
   <div class="container">
-    <div class="split">
-
-      <!-- LEFT PANEL -->
-      <div class="left">
-        <h1>YT-DL Studio</h1>
-        <p>
-          <strong>yt-dls</strong> is a powerful media downloader powered by yt-dlp.<br />
-        </p>
+    <div class="left-pane">
+      <h1>YT-DL Studio</h1>
+      <p>yt-dls is a powerful, clean YouTube media downloader powered by yt-dlp. Paste a video link to preview details, select format, and queue downloads with ease. Designed for creators, archivists, and power users.</p>
+      <div id="metadata-preview" class="hidden">
+        <img id="thumbnail" src="" alt="Video thumbnail" />
+        <h3 id="title"></h3>
+        <p id="videoDescription"></p>
+        <p id="videoSize"></p>
       </div>
+    </div>
+    <div class="group toggles">
+      <label>Dark Mode <input type="checkbox" id="themeToggle" class="switch" /></label>
+    </div>
+  
+    <div class="right-pane">
+      <input id="videoUrl" type="text" placeholder="Paste YouTube URL and press Enter" onkeydown="checkEnter(event)" />
+      <button onclick="fetchMetadata()">Fetch Metadata</button>
+      <div id="shimmer" class="shimmer hidden">Loading...</div>
 
-      <!-- RIGHT PANEL -->
-      <div class="right">
-        <input
-          id="url"
-          type="text"
-          placeholder="Paste YouTube URL and press Enter"
-          oninput="checkURL()"
-          onkeydown="checkEnter(event)"
-        />
-        <button id="fetchBtn" onclick="fetchMetadata()">Fetch Metadata</button>
-        <div id="loader" class="hidden"></div>
-
-        <div id="meta" class="hidden">
-          <img id="thumb" alt="Video thumbnail" />
-          <div id="shimmer" class="shimmer hidden"></div>
-          <h2 id="title">Video Title</h2>
-
-          <label for="format">Select Format</label>
-          <select id="format" disabled></select>
-
-          <label>
-            <input type="checkbox" id="audio_only" disabled onchange="toggleAudioFormat()" />
-            Audio Only
-          </label>
-
-          <label for="audio_format">Audio Format</label>
-          <select id="audio_format" disabled>
-            <option value="mp3">MP3</option>
-            <option value="m4a">M4A</option>
-            <option value="ogg">OGG</option>
-          </select>
-
-          <button id="downloadBtn" onclick="queueDownload()" disabled>
-            Add to Queue
-          </button>
+        <div class="group">
+          <label>Video Quality</label>
+          <div class="button-row" id="video-quality-buttons"></div>
         </div>
 
-        <ul id="queue"></ul>
+        <div class="group">
+          <label>Video Codec</label>
+          <div class="button-row" id="video-codec-buttons"></div>
+        </div>
+
+        <div class="group">
+          <label>Audio Bitrate</label>
+          <div class="button-row" id="audio-bitrate-buttons"></div>
+        </div>
+        
+      <div class="group checkbox-group">
+        <label><input type="checkbox" id="audioOnlyToggle" /> Audio Only</label>
       </div>
+
+      <div class="group toggles">
+        <label>Prefer HLS <input type="checkbox" id="preferHLS" class="switch" /></label>
+        <label>Allow H265 <input type="checkbox" id="allowH265" class="switch" /></label>
+        <label>Convert to GIF <input type="checkbox" id="convertGIF" class="switch" /></label>
+      </div>
+      <button onclick="queueDownload()">Add to Queue</button>
 
     </div>
   </div>
+
   <script src="app.js"></script>
 </body>
 </html>
