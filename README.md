@@ -1,213 +1,437 @@
 # YT-DL Studio
 
-A modern, visually attractive, and feature-rich GUI application for yt-dlp with a monochrome design inspired by Motrix.
+<div align="center">
+  <img src="assets/icons/icon.png" alt="YT-DL Studio Logo" width="128" height="128">
+  
+  **A modern, visually attractive and monochrome frontend GUI for yt-dlp**
+  
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://typescriptlang.org/)
+  [![Electron](https://img.shields.io/badge/Electron-191970?logo=Electron&logoColor=white)](https://www.electronjs.org/)
+  [![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+</div>
 
-![YT-DL Studio](https://img.shields.io/badge/Version-1.0.0-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)
+## 📋 Table of Contents
 
-## 🎨 Features
+- [Overview](#-overview)
+- [Features](#-features)
+- [Project Structure](#-project-structure)
+- [Prerequisites](#-prerequisites)
+- [Installation & Setup](#-installation--setup)
+- [Development](#-development)
+- [Building](#-building)
+- [Configuration](#-configuration)
+- [Technologies Used](#-technologies-used)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-### Core Download Features
-- **Multi-platform Support**: Download from YouTube, Vimeo, Twitch, and 1000+ other sites
-- **Format Selection**: Choose from available video/audio formats
-- **Quality Options**: Select resolution, bitrate, and codec preferences
-- **Audio Extraction**: Convert videos to MP3, M4A, WAV, and other audio formats
-- **Playlist Support**: Download entire playlists with custom options
-- **Subtitle Download**: Extract subtitles in various languages and formats
-- **Metadata Embedding**: Automatically add title, artist, and other metadata
-- **Thumbnail Download**: Save video thumbnails automatically
+## 🌟 Overview
 
-### Advanced Features
-- **Concurrent Downloads**: Download multiple files simultaneously
-- **Resume Downloads**: Continue interrupted downloads
-- **Download Queue**: Manage and prioritize downloads
-- **Progress Tracking**: Real-time progress bars with speed and ETA
-- **Download History**: Track all completed downloads
-- **Custom Output Paths**: Specify download directories
-- **Filename Templates**: Customize file naming patterns
+**YT-DL Studio** is a modern, cross-platform desktop application that provides a beautiful graphical interface for the powerful `yt-dlp` command-line tool. It combines all the features from **Parabolic** and **Stacher** with a modern **Motrix-inspired** design, featuring a floating navbar, 3D effects, and a monochrome theme with smooth light/dark mode transitions.
 
-### User Interface
-- **Modern Design**: Clean, monochrome interface inspired by Motrix
-- **Dark/Light Theme**: Toggle between themes with smooth transitions
-- **Floating Navigation**: Detached navbar with smooth animations
-- **3D Elements**: Futuristic progress bars and UI components
-- **Responsive Layout**: Works on different screen sizes
+### Key Highlights
+- 🎨 **Modern UI**: Motrix-inspired design with floating navbar and glass-morphism effects
+- 🔥 **Full Feature Set**: All capabilities from Parabolic + Stacher combined
+- ⚡ **High Performance**: Built with Electron + React + TypeScript
+- 🌓 **Theme Support**: Beautiful light/dark theme with system preference detection
+- 🎯 **User-Friendly**: Intuitive interface with drag-and-drop support
+- 🚀 **Cross-Platform**: Windows, macOS, and Linux support
+
+## ✨ Features
+
+### 🎯 Core Download Features
+- **Multi-format Support**: Download videos in MP4, WebM, MOV, AVI, etc.
+- **Audio Extraction**: Extract audio in MP3, OPUS, FLAC, M4A, WAV formats
+- **Quality Selection**: Choose from 360p to 8K quality options
+- **Concurrent Downloads**: Up to 10 simultaneous downloads
+- **Batch Processing**: Download multiple URLs at once
+- **Playlist Support**: Download entire playlists with selective picking
+- **Resume Downloads**: Continue interrupted downloads seamlessly
+- **Real-time Progress**: Live progress with speed, ETA, and file size
+
+### 🎨 UI/UX Features
+- **Floating Navigation**: Glass-morphism navbar detached from top
+- **3D Download Bars**: Futuristic progress bars with animations
 - **Smooth Animations**: Framer Motion powered transitions
-- **Real-time Updates**: Live progress and status updates
+- **Responsive Design**: Adapts to all screen sizes
+- **Dark/Light Theme**: System preference with manual toggle
+- **Monochrome Palette**: Beautiful grayscale design with accent colors
 
-### Technical Features
-- **Electron App**: Cross-platform desktop application
-- **React Frontend**: Modern, responsive UI with TypeScript
-- **Python Backend**: Robust yt-dlp integration
-- **Real-time Communication**: WebSocket-like updates
-- **Error Handling**: Comprehensive error management
-- **Logging**: Detailed download logs and debugging
+### 🔧 Advanced Features
+- **Metadata Download**: Video descriptions, thumbnails, subtitles
+- **Queue Management**: Organize and prioritize downloads
+- **User Authentication**: Login support for private content
+- **Custom Output**: Configurable file paths and naming
+- **Download History**: Track all downloads with statistics
+- **System Tray**: Background operation with tray integration
+- **Auto-Updates**: Keep yt-dlp and app up-to-date
 
-## 🚀 Installation
+## 📁 Project Structure
 
-### Prerequisites
-- Node.js 18+ and npm
-- Python 3.8+
-- yt-dlp (will be installed automatically)
+```
+yt-dls/
+├── 📁 electron/                    # Electron main process
+│   ├── 📄 main.ts                 # Main application entry point
+│   └── 📄 preload.ts              # Secure IPC communication bridge
+├── 📁 src/                        # React renderer process
+│   ├── 📁 components/             # React UI components
+│   │   ├── 📁 layout/             # Layout components (Navbar, Sidebar, etc.)
+│   │   ├── 📁 ui/                 # Reusable UI components
+│   │   ├── 📁 modals/             # Modal dialogs
+│   │   └── 📁 download/           # Download-related components
+│   ├── 📁 contexts/               # React Context providers
+│   │   ├── 📄 ThemeContext.tsx    # Theme management (light/dark)
+│   │   ├── 📄 DownloadContext.tsx # Download state management
+│   │   ├── 📄 SettingsContext.tsx # Application settings
+│   │   └── 📄 ToastContext.tsx    # Notification system
+│   ├── 📁 types/                  # TypeScript type definitions
+│   │   └── 📄 index.ts            # All application interfaces
+│   ├── 📁 utils/                  # Utility functions
+│   ├── 📄 App.tsx                 # Main React application
+│   ├── 📄 main.tsx                # React entry point
+│   └── 📄 index.css               # Global styles with Tailwind
+├── 📁 assets/                     # Static assets
+│   └── 📁 icons/                  # Application icons
+├── 📁 build/                      # Build output directory
+├── 📁 dist/                       # Distribution files
+├── 📁 release/                    # Packaged applications
+├── 📄 package.json                # Dependencies and scripts
+├── 📄 tsconfig.json               # TypeScript configuration
+├── 📄 tsconfig.main.json          # Electron main process TS config
+├── 📄 vite.config.ts              # Vite build configuration
+├── 📄 tailwind.config.js          # Tailwind CSS configuration
+├── 📄 postcss.config.js           # PostCSS configuration
+├── 📄 electron-builder.yml        # Electron builder configuration
+└── 📄 README.md                   # This file
+```
 
-### Quick Start
+### 📂 Detailed Component Structure
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/yt-dls.git
-   cd yt-dls
-   ```
+```
+src/components/
+├── layout/
+│   ├── Navbar.tsx                 # Floating navigation bar
+│   ├── Sidebar.tsx                # Side navigation panel
+│   └── MainContent.tsx            # Main content area
+├── ui/
+│   ├── LoadingScreen.tsx          # Animated loading screen
+│   ├── ToastContainer.tsx         # Notification container
+│   ├── Button.tsx                 # Custom button component
+│   ├── Input.tsx                  # Form input components
+│   ├── ProgressBar.tsx            # 3D progress bars
+│   └── ThemeToggle.tsx            # Theme switcher
+├── modals/
+│   ├── SettingsModal.tsx          # Settings dialog
+│   ├── DownloadModal.tsx          # Download configuration
+│   └── AboutModal.tsx             # About application
+└── download/
+    ├── DownloadQueue.tsx          # Download queue manager
+    ├── DownloadItem.tsx           # Individual download item
+    ├── DownloadHistory.tsx        # Download history view
+    └── URLInput.tsx               # URL input with validation
+```
 
-2. **Install dependencies**
-   ```bash
-   # Install Node.js dependencies
-   npm install
-   
-   # Install Python dependencies
-   pip install -r requirements.txt
-   ```
+## 🔧 Prerequisites
 
-3. **Run the application**
-   ```bash
-   # Development mode
-   npm run dev
-   
-   # Production build
-   npm run build
-   npm start
-   ```
+Before running YT-DL Studio, ensure you have the following installed:
 
-## 📖 Usage
+- **Node.js** (v18.0.0 or higher)
+- **npm** (v8.0.0 or higher) or **yarn** (v1.22.0 or higher)
+- **Git** (for cloning the repository)
+- **Python** (v3.8+ recommended, for yt-dlp)
 
-### Basic Download
-1. Launch YT-DL Studio
-2. Enter a video URL in the input field
-3. Click "Download" or press Enter
-4. Monitor progress in the downloads section
+### Platform-Specific Requirements
 
-### Advanced Options
-- **Format Selection**: Click the format button to choose quality
-- **Audio Only**: Toggle audio-only mode for music downloads
-- **Custom Path**: Select download directory in settings
-- **Batch Download**: Add multiple URLs for queue processing
+#### Windows
+- **Visual Studio Build Tools** or **Visual Studio 2022**
+- **Windows SDK** (latest version)
 
-### Navigation
-- **Downloads**: Main download interface and queue management
-- **Settings**: Configure download paths, formats, and preferences
-- **History**: View completed downloads and statistics
+#### macOS
+- **Xcode Command Line Tools**: `xcode-select --install`
+
+#### Linux
+- **build-essential**: `sudo apt install build-essential`
+- **libnss3-dev**: `sudo apt install libnss3-dev`
+
+## 🚀 Installation & Setup
+
+### Method 1: Clone from GitHub
+
+```bash
+# Clone the repository
+git clone https://github.com/cyanide-fx/yt-dls.git
+
+# Navigate to project directory
+cd yt-dls
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+### Method 2: Download Release
+
+1. Visit the [Releases](https://github.com/cyanide-fx/yt-dls/releases) page
+2. Download the appropriate installer for your platform:
+   - **Windows**: `YT-DL-Studio-Setup-x.x.x.exe`
+   - **macOS**: `YT-DL-Studio-x.x.x.dmg`
+   - **Linux**: `YT-DL-Studio-x.x.x.AppImage`
+
+### yt-dlp Installation
+
+YT-DL Studio will attempt to install yt-dlp automatically. If needed, install manually:
+
+```bash
+# Using pip
+pip install yt-dlp
+
+# Using conda
+conda install -c conda-forge yt-dlp
+
+# Using homebrew (macOS)
+brew install yt-dlp
+```
 
 ## 🛠️ Development
 
-### Project Structure
-```
-yt-dls/
-├── src/                    # React frontend source
-│   ├── components/         # React components
-│   ├── store/             # Zustand state management
-│   ├── styles/            # CSS stylesheets
-│   └── types/             # TypeScript type definitions
-├── backend/               # Python Flask backend
-│   └── app.py            # Main backend application
-├── electron/              # Electron main process
-│   ├── main.js           # Main process file
-│   └── preload.js        # Preload script
-└── dist/                  # Built application
-```
-
 ### Available Scripts
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run dist` - Create distributable package
-- `npm start` - Start production application
 
-### Backend API Endpoints
-- `POST /api/extract` - Extract video information
-- `POST /api/download` - Start download
-- `GET /api/downloads` - Get all downloads
-- `GET /api/settings` - Get application settings
-- `PUT /api/settings` - Update settings
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server with hot reload |
+| `npm run dev:renderer` | Start only the React development server |
+| `npm run dev:main` | Compile and run Electron main process |
+| `npm run build` | Build both renderer and main processes |
+| `npm run build:renderer` | Build React application for production |
+| `npm run build:main` | Compile Electron main process |
+| `npm run build:all` | Build and package the application |
+| `npm run build:win` | Build Windows installer |
+| `npm run build:mac` | Build macOS DMG |
+| `npm run build:linux` | Build Linux packages |
+| `npm run pack` | Package without installer |
+| `npm run dist` | Create distribution packages |
+| `npm start` | Run the built application |
 
-## 🎯 Features Comparison
+### Development Workflow
 
-| Feature | YT-DL Studio | Parabolic | Stacher |
-|---------|-------------|-----------|---------|
-| Modern UI | ✅ | ✅ | ✅ |
-| Dark/Light Theme | ✅ | ✅ | ✅ |
-| Format Selection | ✅ | ✅ | ✅ |
-| Audio Extraction | ✅ | ✅ | ✅ |
-| Playlist Support | ✅ | ✅ | ✅ |
-| Concurrent Downloads | ✅ | ✅ | ✅ |
-| Download History | ✅ | ✅ | ✅ |
-| Custom Paths | ✅ | ✅ | ✅ |
-| Subtitle Download | ✅ | ✅ | ✅ |
-| Metadata Embedding | ✅ | ✅ | ✅ |
-| Floating Navigation | ✅ | ❌ | ❌ |
-| 3D UI Elements | ✅ | ❌ | ❌ |
-| Real-time Progress | ✅ | ✅ | ✅ |
-| Cross-platform | ✅ | ✅ | ✅ |
+1. **Start Development Environment**
+   ```bash
+   npm run dev
+   ```
+   This starts both the React dev server (port 5173) and Electron
 
-## 🔧 Configuration
+2. **Hot Reload**
+   - React components hot reload automatically
+   - Electron main process requires restart for changes
 
-### Settings Options
-- **Download Path**: Default download directory
-- **Format Preference**: Default video/audio format
-- **Audio Format**: Default audio extraction format
-- **Subtitles**: Enable/disable subtitle download
-- **Thumbnails**: Enable/disable thumbnail download
-- **Metadata**: Enable/disable metadata embedding
-- **Concurrent Downloads**: Number of simultaneous downloads
+3. **Debugging**
+   - React DevTools available in development
+   - Electron DevTools accessible via `Ctrl+Shift+I`
 
-### Advanced Settings
-- **Custom yt-dlp Options**: Add custom command-line arguments
-- **Proxy Settings**: Configure proxy for downloads
-- **Authentication**: Add cookies and credentials
-- **Rate Limiting**: Control download speed
+### Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+# Development mode
+NODE_ENV=development
+
+# API endpoints (if needed)
+API_BASE_URL=https://api.example.com
+
+# Feature flags
+ENABLE_DEBUG=true
+ENABLE_AUTO_UPDATE=false
+```
+
+## 🏗️ Building
+
+### Development Build
+```bash
+npm run build
+```
+
+### Production Builds
+
+#### All Platforms
+```bash
+npm run build:all
+```
+
+#### Platform-Specific
+```bash
+# Windows
+npm run build:win
+
+# macOS
+npm run build:mac
+
+# Linux
+npm run build:linux
+```
+
+### Build Outputs
+
+- **Windows**: `release/YT-DL-Studio-Setup-x.x.x.exe`
+- **macOS**: `release/YT-DL-Studio-x.x.x.dmg`
+- **Linux**: `release/YT-DL-Studio-x.x.x.AppImage`
+
+## ⚙️ Configuration
+
+### Application Settings
+
+The application stores settings in platform-specific locations:
+
+- **Windows**: `%APPDATA%/yt-dl-studio/`
+- **macOS**: `~/Library/Application Support/yt-dl-studio/`
+- **Linux**: `~/.config/yt-dl-studio/`
+
+### Configuration Files
+
+- `config.json` - Application settings
+- `downloads.json` - Download history
+- `queue.json` - Download queue state
+
+### Customization
+
+#### Theme Customization
+Edit `tailwind.config.js` to modify colors and styling:
+
+```javascript
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          // Custom color palette
+        },
+        accent: {
+          // Accent colors
+        }
+      }
+    }
+  }
+}
+```
+
+#### Default Settings
+Modify `src/contexts/SettingsContext.tsx` to change default values.
+
+## 🔧 Technologies Used
+
+### Core Technologies
+- **[Electron](https://electronjs.org/)** - Cross-platform desktop app framework
+- **[React 18](https://reactjs.org/)** - UI library with hooks and concurrent features
+- **[TypeScript](https://typescriptlang.org/)** - Type-safe JavaScript development
+- **[Vite](https://vitejs.dev/)** - Fast build tool and dev server
+
+### UI & Styling
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
+- **[Framer Motion](https://framer.com/motion/)** - Animation library
+- **[Radix UI](https://radix-ui.com/)** - Accessible UI components
+- **[Lucide React](https://lucide.dev/)** - Beautiful icon library
+
+### Backend & Tools
+- **[yt-dlp](https://github.com/yt-dlp/yt-dlp)** - Video download engine
+- **[electron-builder](https://electron.build/)** - Package and distribute
+- **[electron-store](https://github.com/sindresorhus/electron-store)** - Data persistence
+- **[node-cron](https://github.com/node-cron/node-cron)** - Task scheduling
+
+### Development Tools
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
+- **PostCSS** - CSS processing
+- **Autoprefixer** - CSS vendor prefixes
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
+### Development Setup
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Make your changes
+4. Run tests: `npm test`
+5. Commit: `git commit -m 'Add amazing feature'`
+6. Push: `git push origin feature/amazing-feature`
+7. Open a Pull Request
+
+### Code Style
+- Use TypeScript for all new code
+- Follow ESLint configuration
+- Use Prettier for formatting
+- Write meaningful commit messages
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
-1. **Python not found**: Ensure Python 3.8+ is installed and in PATH
-2. **yt-dlp not working**: Update yt-dlp with `pip install --upgrade yt-dlp`
-3. **Download fails**: Check internet connection and URL validity
-4. **Permission errors**: Run as administrator or check folder permissions
 
-### Debug Mode
+#### yt-dlp Not Found
 ```bash
-# Enable debug logging
-npm run dev -- --debug
+# Install yt-dlp manually
+pip install yt-dlp
 
-# View backend logs
-python backend/app.py --debug
+# Verify installation
+yt-dlp --version
 ```
 
-## 🤝 Contributing
+#### Build Failures
+```bash
+# Clear cache and reinstall
+rm -rf node_modules package-lock.json
+npm install
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+# Rebuild native modules
+npm run postinstall
+```
 
-## 📄 License
+#### Permission Issues (Linux/macOS)
+```bash
+# Make AppImage executable
+chmod +x YT-DL-Studio-x.x.x.AppImage
+
+# Run with elevated privileges if needed
+sudo ./YT-DL-Studio-x.x.x.AppImage
+```
+
+### Debug Mode
+Enable debug logging by setting `NODE_ENV=development` or use the debug menu in the application.
+
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+### Third-Party Licenses
+- **yt-dlp**: The Unlicense
+- **Electron**: MIT License
+- **React**: MIT License
+- **Tailwind CSS**: MIT License
+
 ## 🙏 Acknowledgments
 
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp) - The powerful video downloader
-- [Parabolic](https://github.com/NickvisionApps/Parabolic) - Inspiration for features
-- [Stacher](https://stacher.io/) - UI/UX inspiration
-- [Motrix](https://motrix.app/) - Design inspiration
-- [Framer Motion](https://www.framer.com/motion/) - Animation library
-- [Lucide React](https://lucide.dev/) - Icon library
+- **[yt-dlp team](https://github.com/yt-dlp/yt-dlp)** - Amazing download engine
+- **[Parabolic](https://github.com/NickvisionApps/Parabolic)** - Feature inspiration
+- **[Stacher](https://stacher.io/)** - UI/UX reference
+- **[Motrix](https://motrix.app/)** - Design inspiration
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/yt-dls/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/yt-dls/discussions)
-- **Email**: support@ytdls.app
+- **Issues**: [GitHub Issues](https://github.com/cyanide-fx/yt-dls/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/cyanide-fx/yt-dls/discussions)
+- **Email**: [cyanide-fx@users.noreply.github.com](mailto:cyanide-fx@users.noreply.github.com)
 
 ---
 
-Made with ❤️ by the YT-DL Studio Team
+<div align="center">
+  <p>
+    <strong>Made with ❤️ by <a href="https://github.com/cyanide-fx">cyanide-fx</a></strong>
+  </p>
+  <p>
+    <a href="https://github.com/cyanide-fx/yt-dls/stargazers">⭐ Star this repo</a> •
+    <a href="https://github.com/cyanide-fx/yt-dls/issues">🐛 Report Bug</a> •
+    <a href="https://github.com/cyanide-fx/yt-dls/discussions">💡 Request Feature</a>
+  </p>
+</div>
