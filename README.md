@@ -1,153 +1,152 @@
 # YT-DL Studio
 
-![YT-DL Studio Banner](https://placehold.co/1200x400/0a0a0a/00ff99?text=YT-DL%20Studio)
+[](https://opensource.org/licenses/MIT)
+[](https://www.python.org/downloads/)
+[](https://flask.palletsprojects.com/)
+[](https://github.com/psf/black)
 
-**YT-DL Studio** is a sleek, modern, and powerful web-based graphical user interface (GUI) for the incredible `yt-dlp` command-line tool. It provides a comprehensive suite of features for downloading video and audio from thousands of websites, offering both simplicity for beginners and deep customization for advanced users.
+A sleek, modern, and privacy-focused web interface for the powerful command-line video downloader, `yt-dlp`. YT-DL Studio provides a comprehensive GUI to harness the full potential of `yt-dlp` with ease, from simple downloads to complex post-processing workflows.
 
-The application is designed with a focus on privacy, security, and ease of use, ensuring a safe and ad-free experience. It features a reactive frontend built with vanilla JavaScript and Tailwind CSS, and a robust backend powered by Flask and Python.
+## ✨ Core Philosophy
 
----
+This application was built on a few simple but important principles:
 
-## ✨ Features
+  * **🔒 Privacy First:** Your activity is your business. The backend has a strict zero-log policy. We use a self-hosted, privacy-respecting analytics tool (Plausible) just to see the number of active users, with no identifiable information ever being stored.
+  * **🚫 No Ads, No Nonsense:** This tool is, and always will be, free from ads, trackers, and malware.
+  * **🔓 Open & Accessible:** Our goal is to make the power of `yt-dlp` accessible to everyone—creators, educators, archivists, and enthusiasts—through a clean and intuitive interface.
+  * **💪 Powerful & Transparent:** Leverage the full feature set of `yt-dlp` through a detailed configuration UI and see the exact command being generated in real-time.
 
-YT-DL Studio is packed with features to make your download experience seamless and powerful.
+-----
 
-### Core Download Functionality
-* **Universal URL Support**: Paste any video or playlist URL supported by `yt-dlp`.
-* **Intelligent Metadata Fetching**: Automatically retrieves video title, description, thumbnail, and all available formats.
-* **Advanced Format Selection**:
-    * Choose between combined video/audio, video-only, or audio-only downloads.
-    * View detailed tables of all available video and audio streams, including resolution, bitrate, file size, and codecs.
-    * Select multiple streams for custom downloads.
-* **Download Presets**: Quickly select common download configurations like "Best Quality MP4" or "Audio Only (MP3)".
-* **Real-time Download Queue**:
-    * Track all your active and completed downloads in a clean, organized queue.
-    * **Dual Progress Bars**: Monitor video and audio track download progress independently.
-    * View real-time stats: download speed, ETA, and total size.
-* **Download Management**:
-    * **Pause & Resume**: Pause and resume downloads at any time.
-    * **Cancel**: Stop a download in progress.
-    * **Clear Queue**: Remove completed or failed downloads from the queue.
-    * **Live Logs**: View the raw `yt-dlp` log output for any download in real-time.
+## 🚀 Features
 
-### Extensive Post-Processing & Customization
-* **Custom Filename Templating**: Define your own file naming structure using `yt-dlp` variables.
-* **Container Formats**: Choose your desired output container (MP4, MKV, WebM, etc.).
-* **Subtitle Handling**:
-    * Download subtitles for specific languages or all available languages.
-    * Choose subtitle format (SRT, VTT, ASS).
-    * Embed subtitles directly into the video file.
-* **Metadata & Thumbnails**:
-    * Embed video thumbnail, metadata, and chapters into the final file.
-    * Write file extended attributes (`xattrs`).
-* **FFmpeg Integration**:
-    * **Audio Extraction**: Extract audio from a video file into formats like MP3, M4A, WAV, and FLAC with adjustable quality.
-    * **Re-muxing & Re-coding**: Remux or recode video into different formats.
-    * **Custom Arguments**: Pass custom post-processor arguments directly to FFmpeg.
-* **Final Command Review**: Inspect and edit the final `yt-dlp` command before starting the download for ultimate control.
+YT-DL Studio is packed with features that cater to both casual users and power users.
 
-### Advanced Settings Page
-A dedicated page to configure the global behavior of `yt-dlp`:
-* **Network**: Configure proxies, timeouts, and source IP addresses.
-* **Geo-Restriction**: Bypass geo-blocking with proxy settings or X-Forwarded-For headers.
-* **Authentication**: Provide credentials for sites that require a login, including two-factor authentication and Adobe Pass support.
-* **SponsorBlock**: Automatically mark or remove sponsored segments and other unwanted categories from videos.
-* **Extractor Options**: Pass specific arguments to individual extractors for fine-grained control.
+### Powerful Download Configuration
 
----
+Once you enter a URL, a comprehensive configuration panel appears, giving you granular control over your download.
 
-## 🛠️ Tech Stack
+  * **Presets & Modes:**
+      * Quickly select presets like "Best Quality MP4," "Audio Only (MP3)," or "Best Quality MKV."
+      * Instantly switch between downloading `Video + Audio`, `Video Only`, or `Audio Only`.
+  * **Advanced Format Selection:**
+      * View detailed tables of all available video and audio formats, including resolution, bitrate, codec, and estimated file size.
+      * "Best" formats are automatically highlighted for quick selection.
+      * Enable multi-stream selection to download several quality levels or formats at once.
+  * **Comprehensive Subtitle Control:**
+      * Download subtitles for specific languages or all available languages.
+      * Choose your preferred subtitle format (SRT, VTT, ASS).
+      * Embed subtitles directly into the video file.
+  * **Extensive Post-Processing:**
+      * **Extract Audio:** Rip audio from a video into formats like mp3, m4a, flac, and more, with control over audio quality.
+      * **Remux & Recode:** Easily remux a file into a different container (e.g., MKV to MP4) or recode the video to a different format.
+      * **Embeds:** Seamlessly embed thumbnails, metadata, and chapters into your media files.
+      * **Custom Arguments:** Pass your own custom arguments directly to FFmpeg for specialized workflows.
+  * **Metadata & More:**
+      * Customize the output filename using `yt-dlp` templates.
+      * Automatically parse metadata from the video title.
+      * Split videos by their chapter markers.
+  * **Live Command Preview:** A text area shows you the exact `yt-dlp` command that will be executed, which updates in real-time as you change options.
 
-* **Backend**: Python 3, Flask, yt-dlp
-* **Frontend**: HTML5, Tailwind CSS, Vanilla JavaScript
-* **3D Background**: Three.js
+### Live Download Queue
 
----
+All your downloads appear in a clean, organized queue with real-time feedback.
 
-## 🚀 Setup and Installation
+  * **Dual Progress Bars:** For downloads requiring separate video and audio tracks, you get individual progress bars for each, so you know exactly what's happening.
+  * **Real-time Stats:** Monitor download speed, estimated time remaining (ETA), and total downloaded size at a glance.
+  * **Full Process Control:** Pause, resume, or cancel any active download. Completed or failed downloads can be cleared from the queue.
+  * **Detailed Logging:**
+      * Click the log button on any download item to view the live `yt-dlp` output.
+      * For completed or failed items, you can download the full log file for debugging.
 
-Follow these steps to get YT-DL Studio running on your local machine.
+### Advanced Global Settings
+
+A dedicated settings page allows you to configure advanced `yt-dlp` options that apply to all downloads.
+
+  * **Network:** Configure a proxy, set a socket timeout, or force the use of IPv4/IPv6.
+  * **Authentication:** Provide credentials for sites that require a login, including support for two-factor authentication and `.netrc` files.
+  * **SponsorBlock:** Fine-tune SponsorBlock integration to either mark or remove specific categories like "sponsor" or "selfpromo."
+  * **Extractor & Geo-restriction:** Configure geo-bypass options, extractor-specific arguments, and more.
+
+-----
+
+## 🛠️ Technology Stack
+
+| Component | Technology                                                                               |
+| :-------- | :--------------------------------------------------------------------------------------- |
+| **Backend** | **Python 3**, **Flask**, **yt-dlp**, **psutil**, **Gunicorn** (for production)           |
+| **Frontend** | **HTML5**, **CSS3**, **JavaScript (ES6+)**, **TailwindCSS**, **Three.js** (for background) |
+| **Core Tools** | `yt-dlp` (for downloading), `ffmpeg` (for post-processing)                             |
+
+-----
+
+## ⚙️ Getting Started
+
+You can run YT-DL Studio on your local machine with just a few commands.
 
 ### Prerequisites
-* Python 3.7+
-* `yt-dlp` installed and available in your system's PATH.
-* `ffmpeg` installed and available in your system's PATH (for post-processing).
 
-### Installation Steps
-1.  **Clone the repository:**
+  * **Python** (version 3.8 or newer)
+  * **FFmpeg:** Must be installed and accessible in your system's PATH. This is essential for merging formats and post-processing.
+  * **yt-dlp:** The latest version is recommended.
+
+### Installation
+
+1.  **Clone the Repository:**
+
     ```bash
-    git clone [https://github.com/your-username/ytdl-studio.git](https://github.com/your-username/ytdl-studio.git)
+    git clone https://github.com/your-username/ytdl-studio.git
     cd ytdl-studio
     ```
 
-2.  **Create and activate a virtual environment:**
+2.  **Install Backend Dependencies:**
+    It's highly recommended to use a virtual environment.
+
     ```bash
-    # For Windows
+    # Create and activate a virtual environment (optional but recommended)
     python -m venv venv
-    .\venv\Scripts\activate
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-    # For macOS/Linux
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
-
-3.  **Install the required Python packages:**
-    ```bash
+    # Install Python packages
     pip install -r requirements.txt
     ```
-    *(Note: A `requirements.txt` file should be created with the following content:)*
-    ```
-    Flask
-    Flask-Cors
-    yt-dlp
-    psutil
-    ```
 
-4.  **Run the Flask backend server:**
+    *Note: The `requirements.txt` file should contain `Flask`, `Flask-Cors`, `yt-dlp`, and `psutil`.*
+
+3.  **Run the Backend Server:**
+
     ```bash
     python server.py
     ```
-    The server will start on `http://localhost:5000`.
 
-5.  **Open the application:**
-    Open the `index.html` file in your web browser. The application will connect to the local backend server automatically.
+    The server will start on `http://localhost:5000` by default.
 
----
+4.  **Launch the Frontend:**
+    Simply open the `index.html` file in your web browser. The frontend is pre-configured to communicate with the local server at `http://localhost:5000`.
 
-## 📖 Usage
+That's it\! You can now paste a video URL into the input box and start downloading.
 
-1.  Ensure the `server.py` backend is running.
-2.  Open `index.html` in your browser.
-3.  Paste a video or playlist URL into the input field and press Enter or click the fetch button.
-4.  The configuration panel will appear. Select your desired formats and options.
-5.  Click the "Download" button to add the video to the queue and start the download.
-6.  Monitor the progress in the "Download Queue" section.
+-----
 
----
+## 📁 Project Structure
 
-## 📂 Project Structure
+```
+.
+├── index.html              # Main application page
+├── about.html              # About, Privacy, and TOS page
+├── settings.html           # Advanced settings page
+├── donate.html             # Donation page
+├── style.css               # Main stylesheet (uses TailwindCSS)
+├── script.js               # Core frontend JavaScript logic
+└── server.py               # Flask backend server
+```
 
-/├── downloads/              # Default directory for downloaded files├── index.html              # Main application page├── settings.html           # Advanced settings page├── about.html              # About, Privacy, and ToS page├── donate.html             # Donation and support page├── style.css               # Main stylesheet with theming variables├── script.js               # Core frontend JavaScript logic├── server.py               # Flask backend server└── README.md               # This file
----
+-----
 
-## 🤝 Contributing
+## ❤️ Acknowledgements
 
-Contributions are welcome! If you have ideas for new features, bug fixes, or improvements, please feel free to open an issue or submit a pull request.
+This project is fundamentally a user interface built on top of the incredible, versatile, and tirelessly maintained **[yt-dlp](https://github.com/yt-dlp/yt-dlp)** project. We extend our deepest gratitude to the `yt-dlp` team and its many contributors. Their work is the engine that powers this entire studio.
 
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
+## 📜 License
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
----
-
-## 🙏 Acknowledgements
-
-This project would not be possible without the incredible work done by the `yt-dlp` team and its many contributors. YT-DL Studio is, at its core, a user-friendly interface built upon their powerful and versatile tool.
+This project is licensed under the MIT License. See the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
